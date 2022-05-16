@@ -28,6 +28,6 @@ public class SupplierController {
 
     @GetMapping("/getSupplier")
     public String getSupplier() {
-        return "This is working";
+        return "This is working Perfectly";
     }
 }
