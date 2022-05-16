@@ -6,12 +6,8 @@ name: Supplier Service CI/CD Pipeline
 on:
   push:
     branches: [ master ]
-  workflow_dispatch:
-
-env:
-    PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-    GKE_CLUSTER: k8s-supplier-service
-    GKE_ZONE: us-central1-c
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -19,33 +15,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          java-version: 8
-          server-id: docker.io
-          distribution: 'adopt'
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
-
-      - name: Building and pushing Supplier-Service
-        run: mvn package dockerfile:push --file pom.xml
-        env:
-            MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-            MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-  Deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: kubectl - Google Cloud GKE cluster.
-      uses: ameydev/gke-kubectl-action@master
-      env:
-        PROJECT_ID: ${{ env.PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GKE_SA_KEY }}
-        CLUSTER_NAME: ${{ env.GKE_CLUSTER }}
-        ZONE_NAME: ${{ env.GKE_ZONE }}
+    - uses: actions/checkout@v2
+    - name: Set up JDK 8
+      uses: actions/setup-java@v1
       with:
-        args: apply -f supplier-k8s-service.yaml
+        java-version: '8'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: mvn clean install
+
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: himantha98/supplier-service
+        tags: latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
