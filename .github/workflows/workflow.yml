@@ -10,7 +10,7 @@ on:
     branches: [ master ]
     
 env:
-    PROJECT_ID: ${{secrets.GKE_PROJECT}}
+    PROJECT_ID: ${{secrets.PROJECT_ID}}
     GKE_CLUSTER: k8s-supplier-service
     GKE_ZONE: us-central1-c
 
@@ -54,4 +54,4 @@ jobs:
         CLUSTER_NAME: ${{env.GKE_CLUSTER}}
         ZONE_NAME: ${{env.GKE_ZONE}}
       with:
-        args: apply -f packaging/k8s/manifests/ -n staging
+        args: apply -f -n staging
