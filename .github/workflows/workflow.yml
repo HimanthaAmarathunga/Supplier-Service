@@ -30,10 +30,10 @@ jobs:
           server-password: MAVEN_PASSWORD
 
       - name: Building and pushing Supplier-Service
-        run: mvn package dockerfile:push --file pom.xml
+        run: mvn package dockerfile:push --file Supplier-Service/pom.xml
         env:
-            MAVEN_USERNAME: himantha98
-            MAVEN_PASSWORD: 123Himantha..
+            MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+            MAVEN_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   Deploy:
     needs: build
