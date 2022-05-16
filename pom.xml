@@ -80,6 +80,19 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<repository>HimanthaAmarathunga/Supplier-Service</repository>
+					<tag>${project.version}</tag>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+				</configuration>
+				<dependencies>
+					<!-- To make this work on JDK 9+ -->
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>javax.activation-api</artifactId>
+						<version>1.2.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 		<finalName>SupplierService</finalName>
