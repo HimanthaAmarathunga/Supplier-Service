@@ -54,4 +54,4 @@ jobs:
         CLUSTER_NAME: ${{env.GKE_CLUSTER}}
         ZONE_NAME: ${{env.GKE_ZONE}}
       with:
-        args: get pods
+        args: apply -f supplier-k8s-service.yaml -n staging
