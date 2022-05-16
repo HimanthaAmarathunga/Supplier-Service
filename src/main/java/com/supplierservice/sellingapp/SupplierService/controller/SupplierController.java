@@ -25,4 +25,9 @@ public class SupplierController {
     public List<Supplier> getAllSuppliers() {
         return supplierService.getAllSuppliers();
     }
+
+    @GetMapping("/getSupplier")
+    public String getSupplier() {
+        return "This is working";
+    }
 }
