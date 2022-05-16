@@ -67,33 +67,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.4.13</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<goals>
-							<goal>build</goal>
-							<goal>push</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<repository>HimanthaAmarathunga/Supplier-Service</repository>
-					<tag>${project.version}</tag>
-					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-				</configuration>
-				<dependencies>
-					<!-- To make this work on JDK 9+ -->
-					<dependency>
-						<groupId>javax.activation</groupId>
-						<artifactId>javax.activation-api</artifactId>
-						<version>1.2.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>
 		</plugins>
 		<finalName>SupplierService</finalName>
 	</build>
