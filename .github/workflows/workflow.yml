@@ -53,4 +53,4 @@ jobs:
         CLUSTER_NAME: ${{env.GKE_CLUSTER}}
         ZONE_NAME: ${{env.GKE_ZONE}}
       with:
-        args: apply --file supplier-k8s-service 
+        args: apply -f k8s/
