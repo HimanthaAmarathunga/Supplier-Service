@@ -17,5 +17,5 @@ spec:
       containers:
         - name: supplier-k8s-service
           image: himantha98/supplier-service
-          port:
+          ports:
           - containerPort: 9093
