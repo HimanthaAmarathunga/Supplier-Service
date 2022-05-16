@@ -1,0 +1,6 @@
+com\supplierservice\sellingapp\SupplierService\controller\SupplierController.class
+com\supplierservice\sellingapp\SupplierService\SupplierServiceApplication.class
+com\supplierservice\sellingapp\SupplierService\entity\Supplier.class
+com\supplierservice\sellingapp\SupplierService\repository\SupplierRepository.class
+com\supplierservice\sellingapp\SupplierService\service\SupplierService.class
+com\supplierservice\sellingapp\SupplierService\service\impl\SupplierServiceImpl.class
